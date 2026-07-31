@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tri3o — Software & AI Consulting</title>
+<meta name="description" content="The Tri3o builds AI-native software and provides development, testing, implementation and marketing consulting. Home of Muruval.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&family=Noto+Sans+Tamil:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAFAF8;
+    --ink:#0A0A0A;
+    --ink-soft:#5B5B57;
+    --signal:#FF3B1F;
+    --line:#D9D6CE;
+    --maxw:1320px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--signal); color:var(--paper);}
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--signal);
+    outline-offset:3px;
+  }
+
+  .serif{font-family:'Instrument Serif',serif;}
+  .mono{
+    font-family:'Space Mono',monospace;
+    letter-spacing:0.02em;
+  }
+  .cap{
+    font-family:'Space Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 40px;}
+  .rule{border:none; border-top:1px solid var(--line); margin:0;}
+
+  /* ---- word mark ---- */
+  .wordmark{
+    font-family:'Instrument Serif',serif;
+    font-size:22px;
+  }
+  .wordmark .num{color:var(--signal); font-style:italic;}
+
+  /* ---- nav ---- */
+  nav.top{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,250,248,0.9);
+    backdrop-filter:blur(6px);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 40px;
+    max-width:var(--maxw); margin:0 auto;
+  }
+  .nav-links{display:flex; gap:34px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    position:relative;
+    padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:"";
+    position:absolute; left:0; bottom:0;
+    width:0; height:1px; background:var(--ink);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .nav-cta .dot{width:6px;height:6px;border-radius:50%;background:var(--signal);}
+  @media (max-width:820px){ .nav-links{display:none;} }
+
+  /* ---- hero ---- */
+  .hero{
+    padding:64px 0 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.3fr 0.9fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero-lines .line{
+    font-size:clamp(40px,7vw,92px);
+    line-height:0.98;
+    font-style:italic;
+  }
+  .hero-lines .line:nth-child(4){color:var(--signal);}
+  .hero-sub{
+    max-width:440px;
+    color:var(--ink-soft);
+    font-size:16.5px;
+    margin-top:30px;
+  }
+  .hero-links{
+    display:flex; gap:34px; margin-top:34px; flex-wrap:wrap;
+  }
+  .hero-links a{
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+    border-bottom:1px solid var(--ink);
+    padding-bottom:3px;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .hero-links a:hover{color:var(--signal); border-color:var(--signal);}
+
+  .glyph-wipe{
+    position:relative;
+    display:flex; justify-content:center; align-items:center;
+    height:100%;
+    min-height:280px;
+  }
+  .glyph-wipe .base{
+    font-family:'Noto Sans Tamil',serif;
+    font-size:min(46vw,360px);
+    color:var(--line);
+    line-height:1;
+  }
+  .glyph-wipe .reveal{
+    position:absolute;
+    top:0;left:0;right:0;bottom:0;
+    display:flex; justify-content:center; align-items:center;
+    overflow:hidden;
+    clip-path:inset(0 100% 0 0);
+    animation:wipe 1.6s 0.3s cubic-bezier(.6,0,.2,1) forwards;
+  }
+  .glyph-wipe .reveal span{
+    font-family:'Noto Sans Tamil',serif;
+    font-size:min(46vw,360px);
+    color:var(--ink);
+    line-height:1;
+  }
+  @keyframes wipe{ to{ clip-path:inset(0 0 0 0); } }
+  @media (prefers-reduced-motion: reduce){
+    .glyph-wipe .reveal{ animation:none; clip-path:inset(0 0 0 0); }
+  }
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr; gap:56px;}
+    .glyph-wipe{min-height:180px;}
+  }
+
+  /* ---- section shell ---- */
+  section{padding:96px 0;}
+  .sec-head{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:24px;
+    margin-bottom:56px;
+    align-items:end;
+  }
+  .sec-head .idx{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:64px;
+    color:var(--line);
+    line-height:1;
+  }
+  .sec-head h2{
+    font-family:'Instrument Serif',serif;
+    font-size:clamp(30px,4vw,48px);
+    margin:0 0 8px;
+    line-height:1.08;
+  }
+  .sec-head p{
+    color:var(--ink-soft);
+    max-width:560px;
+    margin:0;
+  }
+  @media (max-width:700px){
+    .sec-head{grid-template-columns:1fr;}
+    .sec-head .idx{font-size:44px;}
+  }
+
+  /* ---- product ---- */
+  .product-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:56px;
+    align-items:start;
+  }
+  .slider-frame{
+    position:relative;
+    width:100%;
+    aspect-ratio:4/3;
+    overflow:hidden;
+    background:#111;
+    border:1px solid var(--ink);
+    cursor:ew-resize;
+    touch-action:none;
+    user-select:none;
+  }
+  .slider-frame svg{width:100%;height:100%;position:absolute;top:0;left:0;}
+  .layer-after{clip-path:inset(0 50% 0 0);}
+  .tag{
+    position:absolute; top:14px;
+    font-family:'Space Mono',monospace;
+    font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase;
+    padding:5px 9px;
+    background:var(--paper);
+    color:var(--ink);
+  }
+  .tag.before{left:14px;}
+  .tag.after{right:14px; background:var(--signal); color:var(--paper);}
+  .handle{position:absolute; top:0; bottom:0; left:50%; width:0; z-index:5; pointer-events:none;}
+  .handle::before{content:""; position:absolute; top:0; bottom:0; left:0; width:1px; background:var(--paper);}
+  .handle-knob{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:36px;height:36px; border-radius:50%; background:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .handle-knob svg{width:14px;height:14px;}
+  .demo-caption{
+    margin-top:14px;
+    font-family:'Space Mono',monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+
+  .feature-list{list-style:none; margin:0; padding:0;}
+  .feature-list li{
+    display:grid;
+    grid-template-columns:34px 1fr;
+    gap:16px;
+    padding:18px 0;
+    border-top:1px solid var(--line);
+  }
+  .feature-list li:last-child{border-bottom:1px solid var(--line);}
+  .feature-list .num{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    color:var(--signal);
+  }
+  .feature-list h4{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    margin:0 0 4px;
+  }
+  .feature-list p{margin:0; font-size:14px; color:var(--ink-soft);}
+  @media (max-width:900px){ .product-grid{grid-template-columns:1fr; gap:40px;} }
+
+  /* ---- services ---- */
+  .service-rows{border-top:1px solid var(--ink);}
+  .service-row{
+    display:grid;
+    grid-template-columns:80px 1fr 2fr;
+    gap:24px;
+    align-items:baseline;
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+    transition:background .2s ease, padding-left .2s ease;
+  }
+  .service-row:hover{background:var(--ink); color:var(--paper); padding-left:16px;}
+  .service-row:hover .row-num{color:var(--signal);}
+  .service-row:hover p{color:#C9C7C0;}
+  .row-num{
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .service-row h3{
+    font-family:'Instrument Serif',serif;
+    font-size:28px;
+    font-style:italic;
+    margin:0;
+  }
+  .service-row p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:15px;
+    max-width:440px;
+  }
+  @media (max-width:700px){
+    .service-row{grid-template-columns:1fr; gap:6px;}
+  }
+
+  /* ---- about ---- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:64px;
+  }
+  .pull{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:clamp(24px,3vw,34px);
+    line-height:1.35;
+    margin:0;
+  }
+  .marginalia{display:flex; flex-direction:column; gap:26px;}
+  .marginalia .note{border-top:1px solid var(--line); padding-top:14px;}
+  .marginalia .note span{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    color:var(--signal);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .marginalia .note p{margin:6px 0 0; font-size:14px; color:var(--ink-soft);}
+  @media (max-width:900px){ .about-grid{grid-template-columns:1fr; gap:40px;} }
+
+  /* ---- contact ---- */
+  .contact-inner{text-align:left;}
+  .contact-inner .cap{margin-bottom:18px; display:block;}
+  .big-mail{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:clamp(32px,7vw,90px);
+    line-height:1;
+    display:inline-block;
+    border-bottom:2px solid transparent;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .big-mail:hover{color:var(--signal); border-color:var(--signal);}
+  .contact-form{
+    margin-top:64px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px 32px;
+    max-width:760px;
+  }
+  .contact-form .full{grid-column:1/-1;}
+  .field label{display:block; font-family:'Space Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-soft); margin-bottom:8px;}
+  .field input, .field textarea{
+    width:100%;
+    border:none;
+    border-bottom:1px solid var(--ink);
+    background:transparent;
+    padding:8px 0;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    color:var(--ink);
+  }
+  .field textarea{resize:vertical; min-height:70px;}
+  .field input::placeholder, .field textarea::placeholder{color:#A6A49C;}
+  .submit-row{grid-column:1/-1; display:flex; align-items:center; gap:18px; margin-top:6px;}
+  .submit-btn{
+    font-family:'Space Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    background:var(--ink);
+    color:var(--paper);
+    border:none;
+    padding:14px 26px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .submit-btn:hover{background:var(--signal);}
+  .form-msg{font-family:'Space Mono',monospace; font-size:12px; color:var(--ink-soft);}
+  @media (max-width:700px){ .contact-form{grid-template-columns:1fr;} }
+
+  /* ---- footer ---- */
+  footer{padding:36px 0;}
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:14px;
+  }
+  .footer-inner .cap{color:var(--ink-soft);}
+  .back-top{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.05em;
+  }
+</style>
+</head>
+<body>
+
+<nav class="top" id="top">
+  <div class="nav-inner">
+    <a href="#top" class="wordmark" aria-label="The Tri3o home">Tri<span class="num">3</span>o</a>
+    <ul class="nav-links">
+      <li><a href="#product">Product</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta"><span class="dot"></span>Start a project</a>
+  </div>
+</nav>
+<hr class="rule">
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-lines">
+        <span class="cap">The Tri3o — Software &amp; AI Consulting</span>
+        <div class="serif line" style="margin-top:18px;">We build.</div>
+        <div class="serif line">We test.</div>
+        <div class="serif line">We run it.</div>
+        <div class="serif line">We tell people.</div>
+        <p class="hero-sub">The Tri3o is a small software and AI consultancy behind Muruval — and the team other companies call when their software actually needs to work.</p>
+        <div class="hero-links">
+          <a href="#product">See the product</a>
+          <a href="#contact">hello@tri3o.com</a>
+        </div>
+      </div>
+      <div class="glyph-wipe" aria-hidden="true">
+        <span class="base">ஃ</span>
+        <div class="reveal"><span>ஃ</span></div>
+      </div>
+    </div>
+  </section>
+  <hr class="rule">
+
+  <!-- PRODUCT -->
+  <section id="product">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">01</span>
+        <div>
+          <h2>Muruval</h2>
+          <p>An AI-powered treatment preview and patient records platform for dentists, clinics and hospitals. One photo in, a realistic preview out — with the patient's profile and full record right alongside it.</p>
+        </div>
+      </div>
+
+      <div class="product-grid">
+        <div>
+          <div class="slider-frame" id="sliderFrame" role="slider" aria-label="Before and after treatment preview comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+            <svg viewBox="0 0 800 400" class="layer-before" aria-hidden="true">
+              <rect width="800" height="400" fill="#141414"/>
+              <g transform="translate(400,230)">
+                <path d="M-220,-40 Q0,60 220,-40 L220,10 Q0,110 -220,10 Z" fill="#4A3D2E"/>
+                <g fill="#D9C9A8">
+                  <rect x="-190" y="-28" width="34" height="46" rx="4" transform="rotate(-6 -173 -5)"/>
+                  <rect x="-152" y="-34" width="34" height="52" rx="4" transform="rotate(-3 -135 -8)"/>
+                  <rect x="-114" y="-38" width="34" height="56" rx="4"/>
+                  <rect x="-76" y="-40" width="34" height="58" rx="4" transform="rotate(2 -59 -11)"/>
+                  <rect x="-38" y="-40" width="34" height="58" rx="4" transform="rotate(-2 -21 -11)"/>
+                  <rect x="0" y="-40" width="34" height="58" rx="4" transform="rotate(3 17 -11)"/>
+                  <rect x="38" y="-38" width="34" height="56" rx="4" transform="rotate(-4 55 -10)"/>
+                  <rect x="76" y="-34" width="34" height="52" rx="4" transform="rotate(5 93 -8)"/>
+                  <rect x="114" y="-28" width="34" height="46" rx="4" transform="rotate(8 131 -5)"/>
+                  <rect x="152" y="-22" width="34" height="40" rx="4" transform="rotate(10 169 -2)"/>
+                </g>
+              </g>
+            </svg>
+            <svg viewBox="0 0 800 400" class="layer-after" aria-hidden="true">
+              <rect width="800" height="400" fill="#0C0C0C"/>
+              <g transform="translate(400,230)">
+                <path d="M-220,-40 Q0,60 220,-40 L220,10 Q0,110 -220,10 Z" fill="#5E4B37"/>
+                <g fill="#F4F1E8">
+                  <rect x="-190" y="-30" width="34" height="48" rx="5"/>
+                  <rect x="-152" y="-36" width="34" height="54" rx="5"/>
+                  <rect x="-114" y="-40" width="34" height="58" rx="5"/>
+                  <rect x="-76" y="-42" width="34" height="60" rx="5"/>
+                  <rect x="-38" y="-42" width="34" height="60" rx="5"/>
+                  <rect x="0" y="-42" width="34" height="60" rx="5"/>
+                  <rect x="38" y="-42" width="34" height="60" rx="5"/>
+                  <rect x="76" y="-40" width="34" height="58" rx="5"/>
+                  <rect x="114" y="-36" width="34" height="54" rx="5"/>
+                  <rect x="152" y="-30" width="34" height="48" rx="5"/>
+                </g>
+              </g>
+              <g>
+                <circle cx="620" cy="90" r="3" fill="#FF3B1F"/>
+                <circle cx="640" cy="70" r="2" fill="#FF3B1F"/>
+                <path d="M615 85 l6 -18 l6 18 l18 6 l-18 6 l-6 18 l-6 -18 l-18 -6 Z" fill="#FF3B1F"/>
+              </g>
+            </svg>
+            <span class="tag before">Before</span>
+            <span class="tag after">AI preview</span>
+            <div class="handle" id="handle">
+              <div class="handle-knob">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2"><path d="M8 6L2 12l6 6M16 6l6 6-6 6"/></svg>
+              </div>
+            </div>
+          </div>
+          <p class="demo-caption">Illustrative preview, not real patient imagery. In-app, every preview is generated from the patient's own photo and shown as a visual preview only — never a diagnosis.</p>
+        </div>
+
+        <ul class="feature-list">
+          <li><span class="num">01</span><div><h4>AI visual preview</h4><p>Whitening, alignment, smile design and orthodontic previews from one photo.</p></div></li>
+          <li><span class="num">02</span><div><h4>Before / after, side by side</h4><p>Original and AI result, paired and dropped straight into a report.</p></div></li>
+          <li><span class="num">03</span><div><h4>Patient profiles &amp; records</h4><p>Contact details, notes, and a full photo and report history, kept under one profile.</p></div></li>
+          <li><span class="num">04</span><div><h4>Patient reports, done</h4><p>Auto-built PDFs, shared over WhatsApp or email in one tap.</p></div></li>
+          <li><span class="num">05</span><div><h4>Clinic workspaces</h4><p>Multiple doctors, roles and patients, cleanly separated.</p></div></li>
+          <li><span class="num">06</span><div><h4>Built to scale</h4><p>From a solo practice to a multi-site hospital group.</p></div></li>
+          <li><span class="num">07</span><div><h4>Access, controlled</h4><p>Workspace-scoped data and role-based permissions throughout.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <hr class="rule">
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">02</span>
+        <div>
+          <h2>Four disciplines. One team.</h2>
+          <p>We work as an extension of yours — scoping, building, testing, shipping and promoting the software your business runs on.</p>
+        </div>
+      </div>
+      <div class="service-rows">
+        <div class="service-row">
+          <span class="row-num">01</span>
+          <h3>Development</h3>
+          <p>Product and platform engineering, from first prototype to a release you can put in front of customers.</p>
+        </div>
+        <div class="service-row">
+          <span class="row-num">02</span>
+          <h3>Testing</h3>
+          <p>QA and validation that catches what matters before your users do — not after.</p>
+        </div>
+        <div class="service-row">
+          <span class="row-num">03</span>
+          <h3>Implementation</h3>
+          <p>Rollout, integration and support that makes go-live a non-event instead of a fire drill.</p>
+        </div>
+        <div class="service-row">
+          <span class="row-num">04</span>
+          <h3>Marketing</h3>
+          <p>Positioning, launch campaigns and growth support that get real users in front of the product we just built.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="rule">
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">03</span>
+        <div>
+          <h2>Small team. Exacting work.</h2>
+          <p>The Tri3o is a software and AI consultancy. We build our own products and take on outside work when it fits.</p>
+        </div>
+      </div>
+      <div class="about-grid">
+        <p class="pull">"The name nods to how we started — three disciplines, one build. We've since added a fourth, marketing, without losing that same accountability."</p>
+        <div class="marginalia">
+          <div class="note"><span>Built, not bolted on</span><p>AI features earn their place in a product — they're not a demo layered on top.</p></div>
+          <div class="note"><span>Tested before it's trusted</span><p>Nothing ships without a QA pass that treats edge cases as the main case.</p></div>
+          <div class="note"><span>One team, start to finish</span><p>The people who scope the work are the ones who ship, support and promote it.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="rule">
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap contact-inner">
+      <div class="sec-head" style="margin-bottom:8px;">
+        <span class="idx">04</span>
+        <div><h2>Let's talk.</h2></div>
+      </div>
+      <a href="mailto:hello@tri3o.com" class="big-mail">hello@tri3o.com</a>
+
+      <form class="contact-form" id="contactForm">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@company.com" required>
+        </div>
+        <div class="field full">
+          <label for="message">What are you building?</label>
+          <textarea id="message" name="message" placeholder="A short note on the project"></textarea>
+        </div>
+        <div class="submit-row">
+          <button type="submit" class="submit-btn">Send message</button>
+          <span class="form-msg" id="formMsg" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<hr class="rule">
+<footer>
+  <div class="wrap footer-inner">
+    <span class="cap">© 2026 The Tri3o · tri3o.com</span>
+    <a href="#top" class="back-top">↑ Back to top</a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const frame = document.getElementById('sliderFrame');
+    const after = frame.querySelector('.layer-after');
+    const handle = document.getElementById('handle');
+    let dragging = false;
+
+    function setPct(pct){
+      pct = Math.max(0, Math.min(100, pct));
+      after.style.clipPath = `inset(0 ${100-pct}% 0 0)`;
+      handle.style.left = pct + '%';
+      frame.setAttribute('aria-valuenow', Math.round(pct));
+    }
+    function pctFromEvent(e){
+      const rect = frame.getBoundingClientRect();
+      const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+      return (x / rect.width) * 100;
+    }
+    frame.addEventListener('pointerdown', (e) => { dragging = true; setPct(pctFromEvent(e)); });
+    window.addEventListener('pointermove', (e) => { if(dragging) setPct(pctFromEvent(e)); });
+    window.addEventListener('pointerup', () => dragging = false);
+    frame.addEventListener('keydown', (e) => {
+      const current = parseFloat(frame.getAttribute('aria-valuenow')) || 50;
+      if(e.key === 'ArrowLeft') setPct(current - 5);
+      if(e.key === 'ArrowRight') setPct(current + 5);
+    });
+    setPct(50);
+  })();
+
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const msgEl = document.getElementById('formMsg');
+    if(!name || !email){ msgEl.textContent = 'Please add your name and email.'; return; }
+    const subject = encodeURIComponent(`New project inquiry — ${name}`);
+    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+    window.location.href = `mailto:hello@tri3o.com?subject=${subject}&body=${body}`;
+    msgEl.textContent = 'Opening your email client…';
+  });
+</script>
+
+</body>
+</html>
